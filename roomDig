@@ -1,0 +1,100 @@
+-- PROGRAM FOR RECTANGULAR ROOM DIGGING V = 0.1 --
+--               CREATED BY CCURLY              --
+
+-- Function Definitions --
+
+function ForwardLoop()
+	for i = 1, x do
+		turtle.dig()
+		turtle.forward()
+		turtle.digUp()
+		turtle.digDown()
+	end
+end
+
+function TurnDecision()
+	if rows % 2 == 1 then
+		turtle.turnRight()
+		turtle.dig()
+		turtle.forward()
+		turtle.digUp()
+		turtle.digDown()
+		turtle.turnRight()
+	else
+		turtle.turnLeft()
+		turtle.dig()
+		turtle.forward()
+		turtle.digUp()
+		turtle.digDown()
+		turtle.turnLeft()
+	end
+end
+
+function ReturnHome()
+
+	turtle.turnRight()
+	
+	while returnValues.z > 0 do
+		turtle.forward()
+		returnValues.z = returnValues.z - 1
+	end
+
+	turtle.turnLeft()
+
+	while returnValues.x > 0 do
+		turtle.forward()
+		returnValues.x = returnValues.x - 1
+	end
+	
+	for i = 1,16 do
+		turtle.select(i)
+		turtle.drop()
+	end
+	
+	turtle.turnLeft()
+	turtle.turnLeft()
+	
+end
+
+-- INITIALIZATION AND VALUE DECLARATION --
+
+do
+	term.clear()
+	
+	print("Input Forward Value")
+	x = tonumber(io.read())
+	print("Forward value set to " ..x)
+	
+	print("Input Side (RIGHT) Value")
+	z = tonumber(io.read())	
+	print("Side (RIGHT) Value set to " ..z)
+	
+	rows = 1
+	print(rows)
+	
+	startPos = vector.new(0,0,0)
+	finishPos = vector.new(0+x,0,1+z)
+	returnValues = startPos:add(finishPos)
+	
+	print("returnValues.x = " ..returnValues.x)
+	print("returnValues.y = " ..returnValues.y)
+	print("returnValues.z = " ..returnValues.z)
+end
+
+-- MAIN LOOP --
+
+while rows <= z+1 do
+
+	print("Loop #" ..rows)
+	
+		ForwardLoop()
+		
+		TurnDecision()
+		
+	rows = rows + 1
+	
+end
+
+-- RETURN HOME --
+
+ReturnHome()
