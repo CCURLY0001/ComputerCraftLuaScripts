@@ -56,6 +56,13 @@ function ReturnHome()
 	
 end
 
+function FuelCheck()
+	if x*z >= turtle.getFuelLevel() then
+		error("Not enough fuel. Please refuel with a fuel source and the 'refuel all' command.")
+		return
+	end
+end
+
 -- INITIALIZATION AND VALUE DECLARATION --
 
 do
@@ -69,8 +76,9 @@ do
 	z = tonumber(io.read())	
 	print("Side (RIGHT) Value set to " ..z)
 	
+	FuelCheck(x,z)
+	
 	rows = 1
-	print(rows)
 	
 	startPos = vector.new(0,0,0)
 	finishPos = vector.new(0+x,0,1+z)
@@ -83,7 +91,7 @@ end
 
 -- MAIN LOOP --
 
-while rows <= z+1 do
+while rows <= z do
 
 	print("Loop #" ..rows)
 	
