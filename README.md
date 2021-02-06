@@ -20,7 +20,7 @@ Goto line 24:
 ... and change it to:
 
 `
-"http://pastebin.com/raw/"..textutils.urlEncode( paste )
+"https://pastebin.com/raw/"..textutils.urlEncode( paste )
 `
 
 Save and exit, and the pastebin script should work on that system when executed from the root of the drive.
