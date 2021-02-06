@@ -91,7 +91,7 @@ end
 
 -- MAIN LOOP --
 
-while rows <= z do
+while rows <= z+1 do
 
 	print("Loop #" ..rows)
 	
